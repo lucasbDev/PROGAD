@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+model Doc {
+  document_number String @id @default(uuid()) @unique
+  document_order String?
+  document_type String?
+  date_destiny DateTime?
+  date_return DateTime?
+  key_word String?
+  subject String?
+  section String?
+  destiny String?
+  return String?
+  created_at     DateTime   @default(now())
+  updated_at     DateTime?  @updatedAt
+
+  @@map("doc")
+}
